@@ -1,15 +1,23 @@
-import { Text, View } from "react-native";
+import { Pressable, Text, TouchableOpacity, View, Image } from "react-native";
+import { styles } from "../styles/auth.styles";
 
 export default function Index() {
   return (
     <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      style={styles.container}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Text style={styles.title}>Abrar Ali</Text>
+
+      <TouchableOpacity onPress={() => alert("Hello")}>
+        <Text>Click Me</Text>
+      </TouchableOpacity>
+      <Pressable onPress={() => alert("Hello")}>
+        <Text>Click Me</Text>
+      </Pressable>
+      <Image source={require("../assets/images/icon.png")}
+      style={{width: 200, height: 200}}
+      />
+       
     </View>
   );
 }
