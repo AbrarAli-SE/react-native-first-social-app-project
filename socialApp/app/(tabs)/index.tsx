@@ -1,15 +1,13 @@
-import { Text,View } from "react-native";
+import { Pressable, Text, TouchableOpacity, View, Image } from "react-native";
+import { styles } from "../../styles/auth.styles";
+import { Link } from "expo-router";
 
 export default function Index() {
   return (
     <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      style={styles.container}
     >
-      <Text>App</Text>
+<Link href={"../notifications"}>visit notifications</Link>
     </View>
   );
 }
