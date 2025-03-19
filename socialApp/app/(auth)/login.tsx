@@ -4,9 +4,29 @@ import React from 'react'
 import { styles } from '@/styles/auth.styles'
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '@/constants/theme';
+import { useSSO } from '@clerk/clerk-expo';
+import { useRouter } from 'expo-router';
 
 export default function login() {
+    const {startSSOFlow} = useSSO()
+        const router = useRouter();
+
+        const handleGoogleSignIn = async () => {
+            try {
+                const { createdSessionId, setActive} =  await startSSOFlow({strategy: "oauth_google"});
+                if(setActive && createdSessionId) {
+                    setActive({session: createdSessionId});
+                    router.replace("/(tabs)");
+                }
+            } catch (error) {
+                console.error("Outh Error", error);
+            }
+        }
+
+
     return (
+        
+
         <View style={styles.container}>
             {/* Brand Section */}
             <View style={styles.brandSection}>
@@ -30,7 +50,7 @@ export default function login() {
             <View style={styles.loginSection}>
                 <TouchableOpacity
                     style={styles.googleButton}
-                    onPress={() => console.log("Continue with Google")}
+                    onPress={() => handleGoogleSignIn()}
                     activeOpacity={0.9}>
                     <View
                         style={styles.googleIconContainer}>
